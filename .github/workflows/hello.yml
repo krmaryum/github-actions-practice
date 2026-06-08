@@ -9,7 +9,7 @@ on:
     branches:
       - main
 
-# jobs define the the work GitHub Actions will perform
+# jobs define the work GitHub Actions will perform
 
 jobs:
   greet:      # job name
