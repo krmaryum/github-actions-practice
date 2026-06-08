@@ -26,7 +26,7 @@ jobs:
       - name: Print current date and time
         run: date
 
-      - name: Print branch name commit ID
+      - name: Print branch name and commit ID
         run: |
           echo "Branch name is ${{ github.ref_name }}"
           echo "Commit ID is ${{ github.sha }}"
@@ -37,6 +37,9 @@ jobs:
 
       - name: Print runner operating system
         run: echo "Runner operating system is ${{ runner.os }}"
+
+      - name: Break workflow on purpose
+        run: exit 1  
  
 
 
