@@ -22,5 +22,22 @@ jobs:
 
       - name: Print Hello message  # Step 2: Run a shell command to print a message
         run: echo "Hello from GitHub Actions!!"
-    
+
+      - name: Print current date and time
+        run: date
+
+      - name: Print branch name commit ID
+        run: |
+          echo "Branch name is ${{ github.ref_name }}"
+          echo "Commit ID is ${{ github.sha }}"
+          echo "Short Commit ID is ${GITHUB_SHA::7}"
+
+      - name: List files in repository
+        run: ls -la
+
+      - name: Print runner operating system
+        run: echo "Runner operating system is ${{ runner.os }}"
+ 
+
+
           
