@@ -1,0 +1,26 @@
+# Workflow name shown in the GitHub Actions tab 
+
+name: Hellow Workflow
+
+# This workflow will run every time you push code from main branch to the remote repository
+
+on:
+  push:
+    branches:
+      - main
+
+# jobs define the the work GitHub Actions will perform
+
+jobs:
+  greet:      # job name
+    runs-on: ubuntu-latest # The job will run on a fresh Ubuntu Linux virtual machine
+
+
+    steps: # Steps are the individual actions/commands inside the job
+      - name: Chek out the code  # Step 1: Download/checkout your repository code into the runner
+        uses: actions/checkout@v4
+
+      - name: Print Hello message  # Step 2: Run a shell command to print a message
+        run: echo "Hello from GitHub Actions!!"
+    
+          
