@@ -38,8 +38,8 @@ jobs:
       - name: Print runner operating system
         run: echo "Runner operating system is ${{ runner.os }}"
 
-      - name: Break workflow on purpose
-        run: exit 1  
+#      - name: Break workflow on purpose
+#        run: exit 1  
  
 
 
