@@ -1,6 +1,6 @@
 # Workflow name shown in the GitHub Actions tab 
 
-name: Hellow Workflow
+name: Hello Workflow
 
 # This workflow will run every time you push code from main branch to the remote repository
 
