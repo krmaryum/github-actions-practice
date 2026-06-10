@@ -11,5 +11,8 @@ jobs:
     steps:
       - name: Print scheduled workflow message
         run: |
-          echo: "This workflow runs every day at midnight UTC"
-          echo: "Current date and time:"date
+          echo "This workflow runs every day at midnight UTC"
+          echo "Current date and time:" ; date
+          
+
+
