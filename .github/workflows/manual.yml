@@ -1,0 +1,23 @@
+name: anual Trigger
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Choose environment name'
+        required: true
+        default: 'staging'
+        type: choice
+        options:
+          - staging
+          - production
+          
+jobs:
+  manual-job:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Print selected environment
+        run: |
+          echo "Manual workflow was triggered."
+          echo "Selected environment is : ${{ github.event.inputs.environment }}"
