@@ -1,4 +1,4 @@
-name: Matrix Build Py-OS
+name: Extended Matrix Build Py-OS
 
 on:
   push:
