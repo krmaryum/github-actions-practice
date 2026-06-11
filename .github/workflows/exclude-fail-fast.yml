@@ -1,0 +1,42 @@
+name: Matrix Build Exclude and Fail Fast
+
+on:
+  push:
+  workflow_dispatch:
+    
+jobs:
+  python-version-test:
+    runs-on: ${{ matrix.os }}
+    
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        python-version: ["3.10", "3,11", "3.12"]
+        exclude:
+          - os: windows-latest
+            python-version: "3.10"
+            
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}  
+        
+      - name: Print OS and Python version
+        run: |
+          echo "Running on OS": ${{ matrix.os }}
+          python --version
+   
+      - name: Force failure only on Ubuntu Python 3.11
+        if: matrix.os == 'ubuntu-lates' && matrix.python-version == '3.11'
+        run: |
+          echo "This job is intentionally failing for testing fail-fast false"
+          exit 1
+
+      - name: Succes message
+        run: echo "This matrix job completed successfully"
+    
