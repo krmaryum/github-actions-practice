@@ -1,0 +1,37 @@
+name: Pre-installed Tools Demo
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  check-tools:
+    name: Check Pre-installed Tools
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Print runner OS information
+        run: |
+          echo "Runner OS information"
+          uname -a
+
+      - name: Check Docker Version
+        run: |
+          echo "Docker Version:"
+          docker --version
+
+      - name: Check Python Version
+        run: |
+          echo "Python Version:"
+          python3 --version
+          
+      - name: Check Node Version
+        run: |
+          echo "Node version:"
+          node --version
+          
+      - name: Check Git Version
+        run: |
+          echo "Git Version:"
+          git --version
+              
