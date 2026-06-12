@@ -21,7 +21,7 @@ jobs:
 
   windows-runner:
     name: Windows Runner job
-    runs-on: wondows-latest
+    runs-on: windows-latest
 
     steps:
       - name: Print Windows runner details
