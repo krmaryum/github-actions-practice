@@ -36,3 +36,4 @@ jobs:
         run: |
           cd ~/actions-runner
           find . -name "self-hosted-test-file.txt"
+          find ~/actions-runner -name "self-hosted-test-file.txt" -exec ls -l {} \; -exec cat {} \;
