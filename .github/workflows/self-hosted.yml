@@ -32,4 +32,7 @@ jobs:
           echo "File content:"
           cat self-hosted-test-file.txt
     
-        
+      - name: Find the file 
+        run: |
+          cd ~/actions-runner
+          find . -name "self-hosted-test-file.txt"
