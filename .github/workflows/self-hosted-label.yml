@@ -1,0 +1,39 @@
+name: Self Hosted Runner label Demo
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  run-on-self-hosted:
+    name: Run Job on self-hosted Runner
+    runs-on: [self-hosted, my-linux-runner]
+
+    steps:
+      - name: Print hostname
+        run: |
+          echo "Hostname of this machine:"
+          hostname
+
+      - name: Print working directory
+        run: |
+          echo "Current working directory:"
+          pwd
+
+      - name: Create a test file
+        run: |
+          echo "This file was created by GitHub Actions on my labeled self-hosted runner." > self-hosted-test-file-label.txt
+          echo "File created successfully."
+
+      - name: Verify file exists
+        run: |
+          echo "Checking if file exists:"
+          ls -l self-hosted-test-file-label.txt
+          echo "File content:"
+          cat self-hosted-test-file-label.txt
+
+      - name: Find the file 
+        run: |
+          cd ~/actions-runner
+          find . -name "self-hosted-test-file-label.txt"
+          find ~/actions-runner -name "self-hosted-test-file-label.txt" -exec ls -l {} \; -exec cat {} \;    
