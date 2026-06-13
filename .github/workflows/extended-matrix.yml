@@ -1,7 +1,7 @@
 name: Extended Matrix Build Py-OS
 
 on:
-  push:
+#   push:
   workflow_dispatch:
     
 jobs:

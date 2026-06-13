@@ -1,7 +1,7 @@
 name: Pre-installed Tools Demo
 
 on:
-  push:
+#   push:
   workflow_dispatch:
 
 jobs:
