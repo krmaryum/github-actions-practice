@@ -1,0 +1,42 @@
+name: Environment Variables Workflow
+
+on:
+  push:
+    branches:
+      - main
+      
+  workflow_dispatch:
+
+env:
+  APP_NAME: myapp
+  
+jobs:
+  show-env-vars:
+    runs-on: ubuntu-latest
+    
+    env:
+      ENVIRONMENT: staging
+      
+    steps:
+      - name: Print environment variables and GitHub context
+        env:
+          VERSION: 1.0.0
+        run: |
+          echo "Application Name: $APP_NAME"
+          echo "Environment: $ENVIRONMENT"
+          echo "Version: $VERSION"
+          echo "Commit SHA: ${{ github.sha }}"
+          echo "Triggered By: ${{ github.actor }}"
+          
+          echo "Branch name is ${{ github.ref_name }}"
+          echo "Full ref is ${{ github.ref }}"
+          echo "Full commit ID is ${{ github.sha }}"
+          echo "Short commit ID is ${GITHUB_SHA::7}"
+          echo "Repository is ${{ github.repository }}"
+          echo "Repository owner is ${{ github.repository_owner }}"
+          echo "Workflow name is ${{ github.workflow }}"
+          echo "Run number is ${{ github.run_number }}"
+          echo "Triggered by is ${{ github.actor }}"
+          echo "Event name is ${{ github.event_name }}"
+          echo "Runner OS is ${{ runner.os }}"
+          echo "Runner architecture is ${{ runner.arch }}"
