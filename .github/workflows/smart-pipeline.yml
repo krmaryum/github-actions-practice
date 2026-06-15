@@ -19,7 +19,7 @@ jobs:
           echo "Lint check completed successfully"
           
   test:
-    runs-on: letest-ubuntu
+    runs-on: ubuntu-latest
     
     steps:
       - name: Checkout repository
@@ -49,4 +49,4 @@ jobs:
           else
             echo "This is a feature branch push"
           fi
-              
+
