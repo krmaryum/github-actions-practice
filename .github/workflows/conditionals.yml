@@ -48,4 +48,5 @@ jobs:
         run: |
           echo "This job runs only when event is push"
           echo "Current event is: ${{ github.evnt_name }}"
+          
   

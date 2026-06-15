@@ -1,0 +1,52 @@
+name: Smart Pipeline Workflow
+
+on:
+  push:
+  
+  workflow_dispatch:
+    
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
+      - name: Run lint check
+        run: |
+          echo "Running lint job"
+          echo "Lint check completed successfully"
+          
+  test:
+    runs-on: letest-ubuntu
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
+      - name: Run tests
+        run: |
+          echo "Running test job"
+          echo "Tests completed successfully"
+          
+  summary:
+    runs-on: ubuntu-latest
+    needs: [lint,test]
+
+    steps:
+      - name: Print pipeline summary
+        run: |
+          echo "Pipeline Summary"
+          echo "----------------"
+          echo "Branch name is: ${{ github.ref_name }}"
+          echo "Full ref is: ${{ github.ref }}"
+          echo "Event name is: ${{ github.event_name }}"
+          echo "Commit message is: ${{ github.event.head_commit.message }}"
+          
+          if [ "${{ github.ref }}" = "refs/heads/main" ]; then
+            echo "This is a main branch push"
+          else
+            echo "This is a feature branch push"
+          fi
+              
