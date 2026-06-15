@@ -46,6 +46,6 @@ jobs:
     steps:
       - name: This job runs only on push events
         run: |
-          echo: "This job runs only when event is push"
-          echo: "Current event is: ${{ github.evnt_name }}"
+          echo "This job runs only when event is push"
+          echo "Current event is: ${{ github.evnt_name }}"
   
