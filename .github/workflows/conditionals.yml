@@ -3,11 +3,11 @@ name: Conditionals Workflow
 on:
  push:
    branches:
-     - name
+     - main
      
  pull_request:
    branches:
-     - name
+     - main
      
  workflow_dispatch:
     
