@@ -26,13 +26,17 @@ jobs:
         run: echo "This step runs only on the main branch"
         
       - name: This step will fail but workflow continues
+        id: fail-step
         continue-on-error: true
         run: |
-          echo "This step is intentionally failling"
+          echo "This step is intentionally failing"
           exit 1
-          
-      - name: Run only if previous step failed
-        if: failure()
+
+      - name: Run only if fail-step failed
+        if: steps.fail-step.outcome == 'failure'
+        run: echo "The fail-step failed, so this step is running"
+
+      - name: Final step
         run: echo "Workflow continued after failure because continue-on-error was true"
         
   push-only-job:
