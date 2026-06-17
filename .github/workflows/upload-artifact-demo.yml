@@ -1,0 +1,36 @@
+name: Upload Artifact Demo
+
+on:
+  push:
+
+  workflow_dispatch:
+    
+jobs:
+  generate-report:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Create reports folder
+        run: mkdir -p reports
+
+      - name: Generate test report file
+        run: |
+          mkdir -p reports
+          echo "Day 44 Artifact Report" > reports/test-report.txt
+          echo "Repository: $GITHUB_REPOSITORY" >> reports/test-report.txt
+          echo "Branch: $GITHUB_REF_NAME" >> reports/test-report.txt
+          echo "Commit SHA: $GITHUB_SHA" >> reports/test-report.txt
+          echo "Workflow: $GITHUB_WORKFLOW" >> reports/test-report.txt
+          echo "Job status: success" >> reports/test-report.txt
+          echo "Generated at: $(date)" >> reports/test-report.txt
+          
+      - name: Show report content in logs
+        run: cat reports/test-report.txt
+        
+      - name: Upload test report artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: day-44-test-report
+          path: reports/test-report.txt
+
+          
