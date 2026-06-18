@@ -1,0 +1,23 @@
+name: Real Tests in CI
+
+on:
+  push:
+
+  workflow_dispatch:
+    
+jobs:
+  run-shell-sript-test:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
+      - name: Show repository files
+        run: ls -R
+        
+      - name: Make script executable
+        run: chmod +x scripts/system-health-check.sh
+        
+      - name: Run system health check script
+        run: ./scripts/system-health-check.sh  
