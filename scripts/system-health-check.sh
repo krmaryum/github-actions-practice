@@ -34,8 +34,8 @@ df -h
 echo
 echo "Checking required commands..."
 
-#required_commands=("bash" "git" "hostname" "df")
-required_commands=("bash" "git" "pwd" "hostname" "df" "fakecommand123")
+required_commands=("bash" "git" "hostname" "df")
+#required_commands=("bash" "git" "pwd" "hostname" "df" "fakecommand123")
 
 for command in "${required_commands[@]}"
 do
