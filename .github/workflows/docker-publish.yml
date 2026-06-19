@@ -1,0 +1,21 @@
+name: Docker build CI
+
+on:
+  push:
+    branches:
+      - main  
+
+  workflow_dispatch:
+    
+jobs:
+  build-docker-image:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository code
+        uses: actions/checkout@v4
+        
+      - name: Build Docker image
+        run: |
+          docker build -t day45-docker-app:latest .
+  
