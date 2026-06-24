@@ -1,0 +1,28 @@
+name: Use Composite Action day-46 task5
+
+on:
+  push:
+    branches:
+      - main
+      
+  workflow_dispatch:
+    
+jobs:
+  greet:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Run custome composite action
+        id: greet-action
+        uses: ./.github/actions/setup-and-greet
+        with:
+          name: "Khalid"
+          language: "ur"
+          
+      - name: Print composit action output
+        run: |
+          echo "Greeted output: ${{ steps.greet-action.outputs.greeted }}"
+    
