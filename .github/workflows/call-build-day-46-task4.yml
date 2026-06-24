@@ -1,28 +1,24 @@
-name: call Reusable Build Workflow day-46 task4
+name: Call Reusable Build Workflow day-46 task4
 
 on:
   push:
     branches:
       - main
-      
+
 jobs:
   build:
     uses: ./.github/workflows/reusable-build-day-46-task4.yml
     with:
       app_name: "my-web-app"
-      environment: "production"    
+      environment: "production"
     secrets:
       docker_token: ${{ secrets.DOCKER_TOKEN }}
-      
-      
+
   print-version:
     runs-on: ubuntu-latest
     needs: build
 
     steps:
-      - name: Print build version from resuable workflow
+      - name: Print build version from reusable workflow
         run: |
-          echo "Build version from reusable workflow: ${{ needs.build.outputs.build_version }}"  
-
-
-
+          echo "Build version from reusable workflow: ${{ needs.build.outputs.build_version }}"

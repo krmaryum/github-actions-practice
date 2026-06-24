@@ -1,15 +1,15 @@
-name: Reusable Build Workflow task4
+name: Reusable Build Workflow
 
 on:
   workflow_call:
     inputs:
       app_name:
-        description: "name of the application"
+        description: "Name of the application"
         required: true
         type: string
-        
+
       environment:
-        description: "Target enviromment"
+        description: "Target environment"
         required: true
         default: "staging"
         type: string
@@ -17,23 +17,23 @@ on:
     secrets:
       docker_token:
         required: true
-        
+
     outputs:
       build_version:
         description: "Generated build version"
         value: ${{ jobs.build.outputs.build_version }}
-        
+
 jobs:
   build:
     runs-on: ubuntu-latest
-    
-    outputs: 
-      build_version: ${{ steps.version.ouputs.build_version }}
+
+    outputs:
+      build_version: ${{ steps.version.outputs.build_version }}
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-        
+
       - name: Generate build version
         id: version
         run: |
@@ -46,7 +46,7 @@ jobs:
         run: |
           echo "Building ${{ inputs.app_name }} for ${{ inputs.environment }}"
           echo "Build version is ${{ steps.version.outputs.build_version }}"
-          
+
       - name: Check Docker token
         run: |
           if [ -n "${{ secrets.docker_token }}" ]; then
@@ -54,7 +54,4 @@ jobs:
           else
             echo "Docker token is set: false"
             exit 1
-          fi        
-
-
-
+          fi
