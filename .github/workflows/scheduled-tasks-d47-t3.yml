@@ -1,0 +1,42 @@
+name: Scheduled Tasks d47 t3
+
+on:
+  schedule:
+    - cron: '30 2 * * 1'
+    - cron: '0 */6 * * *'
+
+  workflow_dispatch:
+
+jobs:
+  scheduled-health-check:
+    name: Scheduled Health Check
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Print trigger information
+        run: |
+          echo "Workflow triggered by: ${{ github.event_name }}"
+          echo "Schedule expression: ${{ github.event.schedule }}"
+
+      - name: Explain manual trigger
+        if: github.event_name == 'workflow_dispatch'
+        run: |
+          echo "This workflow was triggered manually using workflow_dispatch."
+          echo "github.event.schedule is empty because this was not triggered by cron."
+
+      - name: Health check with curl
+        run: |
+          URL="https://github.com"
+
+          echo "Checking health of: $URL"
+
+          status_code=$(curl -L -s -o /dev/null -w "%{http_code}" "$URL")
+
+          echo "HTTP status code: $status_code"
+
+          if [ "$status_code" -ge 200 ] && [ "$status_code" -lt 400 ]; then
+            echo "Health check passed."
+          else
+            echo "Health check failed."
+            exit 1
+          fi
